@@ -12,30 +12,7 @@ $(document).ready(function(){
 	m = date.getMonth(),
 	y = date.getFullYear();
 
-	/*
-	var sources = {
-
-		agendaRafaela: {
-			url:'/consultas/mostrarConsultas/1',
-			type:'GET',
-			cache: true,
-			error: function() { alert('something broke with courses...'); },
-			color: 'purple',
-			textColor: 'white',
-			className: 'rafaela'
-		},
-		agendaFernanda: {
-			url:'/consultas/mostrarConsultas/2',
-			type:'GET',
-			cache: true,
-			error: function() { alert('something broke with courses...'); },
-			color: 'yellow',
-			textColor: 'white',
-			className: 'fernanda'
-		}
-	}
-	*/
-
+	/* exibie o calendário de acordo com id recebido */
 	function mostrarCalendario(id) {
 
 		$('#calendar').fullCalendar({
@@ -63,7 +40,6 @@ $(document).ready(function(){
 			{	// query que lista as consultas
 				url:"/consultas/mostrarConsultas/"+id,
 				type:'GET',
-				//sources.agendaRafaela, sources.agendaFernanda
 			}                
 			],
 
@@ -132,11 +108,11 @@ $(document).ready(function(){
 		});
 	}
 
+	// por padrão mostra todas as agendas com o id = 0
 	mostrarCalendario(0);
 
-	//$('#ver_agendas option[value="0"]').attr('selected', 'selected');
-
-	$('#ver_agendas').change(function(e) {
+	// select para a escolha de agendas
+	$('#ver_agendas').change(function(e) {	
 		$('#calendar').fullCalendar('destroy');
 		mostrarCalendario($(this).val());
 	});
@@ -220,6 +196,7 @@ $(document).ready(function(){
 	// campos de data chamam a função que permite apenas números
 	$('.data').ForceNumericOnly();
 
+	// ao sair dos campos de data, muda a cor de acordo com a validação
 	$('.data').blur(function() {
 
 		if(validarData($(this).val())) {
@@ -268,15 +245,16 @@ $(document).ready(function(){
 	
 });
 
+/* função p/ a máscara de data. permite a quantidade de digitos de acordo com o necessário */
 function validarData(value) {
-		// capture all the parts
-		var matches = value.match(/^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})$/);
-		if (matches === null) {
-			return false;
-		} else{
-		        // now lets check the date sanity
-		        var year = parseInt(matches[3], 10);
-		        var month = parseInt(matches[2], 10) - 1; // months are 0-11
+
+	var matches = value.match(/^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})$/);
+	if (matches === null) {
+		return false;
+	} else{
+		
+		var year = parseInt(matches[3], 10);
+		        var month = parseInt(matches[2], 10) - 1;
 		        var day = parseInt(matches[1], 10);
 		        var hour = parseInt(matches[4], 10);
 		        var minute = parseInt(matches[5], 10);		        
