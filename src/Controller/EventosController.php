@@ -28,7 +28,7 @@ class EventosController extends AppController
 
         $atendentes = $atendentesTable->find('list', ['valueField' => 'nome']);
         $clientes = $clientesTable->find('list', ['valueField' => 'nome']);
-        $procedimentos = $procedimentosTable->find('list', ['valueField' => 'descricao']); 
+        $procedimentos = $procedimentosTable->find('list', ['valueField' => 'descricao']);
 
         $this->set(compact('atendentes', 'clientes', 'procedimentos'));
 
@@ -36,21 +36,13 @@ class EventosController extends AppController
 
     public function mostrarAniversarios()
     {   $this->render(false);
-        
+
         $eventos = $this->Eventos->find()
         ->select(['title', 'start'])
         ->all();
-        
-        /*
-        foreach ($eventos as $evento) {
-            $title = $evento->title;
-            $start = $evento->start;
-            $end = $evento->end;
-        }
-        */
 
-        echo json_encode($eventos);    
-                 
+        echo json_encode($eventos);
+
         $this->set(compact('eventos'));
     }
 
@@ -95,7 +87,7 @@ class EventosController extends AppController
 
         $atendentes = $atendentesTable->find('list', ['valueField' => 'nome']);
         $clientes = $clientesTable->find('list', ['valueField' => 'nome']);
-        $procedimentos = $procedimentosTable->find('list', ['valueField' => 'descricao']); 
+        $procedimentos = $procedimentosTable->find('list', ['valueField' => 'descricao']);
 
         $this->set(compact('atendentes', 'clientes', 'procedimentos'));
         $this->set(compact('evento'));
@@ -145,12 +137,4 @@ class EventosController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function addProcedimento() {
-        $this->render(false);
-        if($this->request->is('ajax')) {
-            $data = $this->request->data();
-            echo "caiu aqui";    
-        }
-        
-    }
 }
