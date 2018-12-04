@@ -1,0 +1,40 @@
+.fc-event{
+	/* mãozinha no calendário */
+	cursor: pointer;
+}
+
+.fc-toolbar { 
+	/* camel case no cabeçalho */
+	text-transform: capitalize; 
+}
+
+.alert {
+	display: none;
+	//background-color: #CCE5FF;		
+	//background-color: #D1ECF1;
+	background-color: #D4EDDA;
+}
+
+.alert p {
+	font-weight: bold;
+}
+
+button.btn {
+	font-weight: bold;
+}
+
+button#btn_edit {
+	float: right;
+	margin-top: 5%;
+	padding: 8px 16px;
+	font-size: 15px;
+}
+
+button.btn_modal {
+	padding: 8px 12px;
+	font-size: 14px;
+}
+
+select#ver_agendas {
+	width: 30%;
+}
